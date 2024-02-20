@@ -1,0 +1,42 @@
+query PayoutAccounts {
+  payoutAccounts {
+    ...PayoutAccount
+  }
+}
+
+query SupportedPayoutMethods {
+  payoutMethods {
+    id
+    name
+    type
+    linkMethod
+    media {
+      ...MediaFragment
+    }
+  }
+}
+
+mutation markPayoutAccountAsDefault($id: ID!) {
+  markPayoutAccountAsDefault(payoutMethodId: $id) {
+    ...PayoutAccount
+  }
+}
+
+mutation deletePayoutAccount($id: ID!) {
+  deleteOnePayoutAccount(input: { id: $id }) {
+    id
+  }
+}
+
+query getPayoutAccountLinkUrl($gatewayId: ID!) {
+  getPayoutLinkUrl(input: { gatewayId: $gatewayId }) {
+    status
+    url
+  }
+}
+
+mutation createPayoutAccount($input: PayoutAccountInput!) {
+  createPayoutAccount(input: $input) {
+    ...PayoutAccount
+  }
+}

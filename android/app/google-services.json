@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "400865280573",
+    "project_id": "yocar-7f15f",
+    "storage_bucket": "yocar-7f15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400865280573:android:be90027abec9149bf3a054",
+        "android_client_info": {
+          "package_name": "com.ridy.yocar.driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtsC3-WoufOVmsHFwbgfDYGcu9q8GwO0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400865280573:android:fb6a0cece683e127f3a054",
+        "android_client_info": {
+          "package_name": "com.ridy.yocar.rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtsC3-WoufOVmsHFwbgfDYGcu9q8GwO0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
