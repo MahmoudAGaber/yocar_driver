@@ -38,17 +38,31 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.responsive(
-                AppBackButton(onPressed: () {
-                  context.router.pop();
-                }),
-                xl: const SizedBox.shrink(),
+              Row(
+                children: [
+                  context.responsive(
+                    AppBackButton(onPressed: () {
+                      context.router.pop();
+                    }),
+                    xl: const SizedBox.shrink(),
+                  ),
+                  SizedBox(width: 4,),
+                  Text(context.translate.backButton,
+                    style: context.bodyLarge,
+                  ),
+                  SizedBox(height: context.responsive(16, xl: 84)),
+                  SizedBox(width: MediaQuery.of(context).size.width*.24,),
+                  Text(
+                    context.translate.rideHistory,
+                    style: context.titleMedium,
+                  ),
+                ],
               ),
-              SizedBox(height: context.responsive(16, xl: 84)),
-              Text(
-                context.translate.rideHistory,
-                style: context.headlineSmall,
-              ),
+              SizedBox(height: context.responsive(2, xl: 84)),
+              // Text(
+              //   context.translate.rideHistory,
+              //   style: context.headlineSmall,
+              // ),
               const SizedBox(height: 24),
               Expanded(
                 child: BlocBuilder<RideHistoryBloc, RideHistoryState>(builder: (context, state) {

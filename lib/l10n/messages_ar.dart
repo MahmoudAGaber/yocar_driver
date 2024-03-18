@@ -6,6 +6,25 @@ import 'messages.dart';
 class SAr extends S {
   SAr([String locale = 'ar']) : super(locale);
 
+
+  @override
+  String get call => 'اتصل';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get cancelMyRide => 'إلغاء رحلتي';
+
+  @override
+  String get waitMyRide => 'انتظر رحلتي';
+
+  @override
+  String get cancelTrip => 'إلغاء الرحلة';
+
+  @override
+  String get backButton=> 'رجوع';
+
   @override
   String get welcomeTitle => 'مرحبا بكم في التطبيق';
 
@@ -695,7 +714,7 @@ class SAr extends S {
   String get rideCancellation => 'إلغاء الرحلة';
 
   @override
-  String get cancelRideMessage => 'هل أنت متأكد أنك تريد إلغاء رحلتك؟';
+  String get cancelRideMessage => 'قد يتم تطبيق رسوم عند الإلغاء';
 
   @override
   String get cancelRideSuccess => 'تم إلغاء الرحلة بنجاح';

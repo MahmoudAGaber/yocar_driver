@@ -7,6 +7,24 @@ class SJa extends S {
   SJa([String locale = 'ja']) : super(locale);
 
   @override
+  String get call => 'Call';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get cancelMyRide => 'Cancel my ride';
+
+  @override
+  String get waitMyRide => 'Wait for my ride';
+
+  @override
+  String get cancelTrip => 'Cancel Trip';
+
+  @override
+  String get backButton=> 'Back';
+
+  @override
   String get welcomeTitle => 'アプリへようこそ';
 
   @override

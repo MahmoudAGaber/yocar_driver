@@ -108,21 +108,21 @@ class OnboardingScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        Row(
-                          children: [
-                            AppPrimaryButton(
-                                onPressed: () {
-                                  onboardingCubit.previousPage();
-                                },
-                                child: Row(
-                                  children: [
-                                    Text("back"),
-                                    const SizedBox(width: 8),
-                                    const Icon(Ionicons.arrow_forward, size: 16),
-                                  ],
-                                )),
-                          ],
-                        )
+                        // Row(
+                        //   children: [
+                        //     AppPrimaryButton(
+                        //         onPressed: () {
+                        //           onboardingCubit.previousPage();
+                        //         },
+                        //         child: Row(
+                        //           children: [
+                        //             Text("back"),
+                        //             const SizedBox(width: 8),
+                        //             const Icon(Ionicons.arrow_forward, size: 16),
+                        //           ],
+                        //         )),
+                        //   ],
+                        // )
 
                       ],
                     ),

@@ -7,6 +7,24 @@ class SEn extends S {
   SEn([String locale = 'en']) : super(locale);
 
   @override
+  String get call => 'Call';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get cancelMyRide => 'Cancel my ride';
+
+  @override
+  String get waitMyRide => 'Wait for my ride';
+
+  @override
+  String get cancelTrip => 'Cancel Trip';
+
+  @override
+  String get backButton=> 'Back';
+
+  @override
   String get welcomeTitle => 'Welcome to the app';
 
   @override
@@ -453,7 +471,7 @@ class SEn extends S {
   String get saveChanges => 'Save changes';
 
   @override
-  String get rideHistory => 'Ride History';
+  String get rideHistory => 'Rides';
 
   @override
   String get scheduledRides => 'Scheduled rides';
@@ -695,7 +713,7 @@ class SEn extends S {
   String get rideCancellation => 'Ride Cancellation';
 
   @override
-  String get cancelRideMessage => 'Are you sure you want to cancel your ride?';
+  String get cancelRideMessage => 'Fees may apply when canceling';
 
   @override
   String get cancelRideSuccess => 'Ride has been canceled successfully';

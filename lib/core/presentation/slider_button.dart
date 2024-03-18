@@ -155,7 +155,12 @@ class _SliderButtonState extends State<SliderButton> with SingleTickerProviderSt
             color: ColorPalette.primary99,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Assets.images.blueArrow.image(),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: ColorPalette.primary40,
+            child:Icon(Icons.arrow_forward,color: Colors.white,size: 18,),
+          )
+
         ),
       ),
     );

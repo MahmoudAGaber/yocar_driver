@@ -131,6 +131,20 @@ abstract class S {
   ///
   /// In en, this message translates to:
   /// **'Welcome to the app'**
+  ///
+  ///
+  String get call;
+
+  String get message;
+
+  String get cancelMyRide;
+
+  String get waitMyRide;
+
+  String get cancelTrip;
+
+  String get backButton;
+
   String get welcomeTitle;
 
   /// No description provided for @today.

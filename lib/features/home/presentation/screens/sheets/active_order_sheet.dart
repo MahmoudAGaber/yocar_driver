@@ -2,10 +2,14 @@ import 'package:driver_flutter/config/locator/locator.dart';
 import 'package:driver_flutter/core/extensions/extensions.dart';
 import 'package:driver_flutter/core/presentation/slider_button.dart';
 import 'package:driver_flutter/features/home/presentation/dialogs/launch_map_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_common/core/color_palette/color_palette.dart';
 import 'package:flutter_common/core/enums/order_status.dart';
 import 'package:flutter_common/core/extensions/extensions.dart';
+import 'package:flutter_common/core/presentation/buttons/app_bordered_button.dart';
+import 'package:flutter_common/core/presentation/buttons/app_list_button.dart';
 import 'package:flutter_common/core/presentation/buttons/app_primary_button.dart';
 import 'package:flutter_common/core/presentation/buttons/app_text_button.dart';
 import 'package:flutter_common/core/presentation/waypoints_view/waypoints_view.dart';
@@ -19,6 +23,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../blocs/home.dart';
 import '../../components/notice_bar_content.dart';
 import '../../components/payment_method_select_field.dart';
+import '../../dialogs/cancel_ride_dialog.dart';
 import '../../dialogs/ride_options_dialog.dart';
 import '../../dialogs/ride_safety_dialog.dart';
 
@@ -77,30 +82,6 @@ class ActiveOrderSheet extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              context.responsive(
-                AnimatedSwitcher(
-                  duration: AnimationDuration.pageStateTransitionMobile,
-                  child: (state.order.status == OrderStatus.driverAccepted && state.order.etaPickupAt != null)
-                      ? NoticeBarContent(
-                          icon: Ionicons.time,
-                          text: "Picking up the rider in:",
-                          trailingText: state.order.etaPickupAt?.minutesFromNow(context),
-                        )
-                      : state.order.status == OrderStatus.arrived
-                          ? const NoticeBarContent(
-                              icon: Ionicons.information_circle,
-                              text: "Rider has been notified, Pickup the rider and start the ride",
-                            )
-                          : state.order.status == OrderStatus.started
-                              ? NoticeBarContent(
-                                  icon: Ionicons.time,
-                                  text: "Heading to destination",
-                                  trailingText: state.order.expectedArrival(context),
-                                )
-                              : const SizedBox.shrink(),
-                ),
-                xl: const SizedBox(),
-              ),
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
@@ -114,6 +95,32 @@ class ActiveOrderSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const CardHandle(),
+
+                      context.responsive(
+                        AnimatedSwitcher(
+                          duration: AnimationDuration.pageStateTransitionMobile,
+                          child: (state.order.status == OrderStatus.driverAccepted && state.order.etaPickupAt != null)
+                              ? NoticeBarContent(
+                            icon: Ionicons.time,
+                            text: "Picking up the rider in:",
+                            trailingText: state.order.etaPickupAt?.minutesFromNow(context),
+                          )
+                              : state.order.status == OrderStatus.arrived
+                              ? const NoticeBarContent(
+                            icon: Ionicons.information_circle,
+                            text: "Rider has been notified, Pickup the rider and start the ride",
+                          )
+                              : state.order.status == OrderStatus.started
+                              ? NoticeBarContent(
+                            icon: Ionicons.time,
+                            text: "Heading to destination",
+                            trailingText: state.order.expectedArrival(context),
+                          )
+                              : const SizedBox.shrink(),
+                        ),
+                        xl: const SizedBox(),
+                      ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Row(
@@ -149,9 +156,6 @@ class ActiveOrderSheet extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const SizedBox(
-                              width: 12,
-                            ),
                             AppIconButton(
                               icon: Ionicons.chatbubble,
                               onPressed: () {
@@ -173,11 +177,9 @@ class ActiveOrderSheet extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        height: 120,
-                        child: SingleChildScrollView(
-                          child: WayPointsView(
-                            waypoints: state.order.waypoints,
-                          ),
+                        height: 150,
+                        child: WayPointsView(
+                          waypoints: state.order.waypoints,
                         ),
                       ),
                       const SizedBox(
@@ -213,40 +215,109 @@ class ActiveOrderSheet extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                AppTextButton(
-                                  iconData: Ionicons.cog,
-                                  isDense: true,
-                                  text: context.translate.rideOptions,
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      useSafeArea: false,
-                                      builder: (context) => RideOptionsSheet(
-                                        orderId: state.order.id,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Column(
+                                    children: [
+                                      // PaymentMethodSelectField(
+                                      //   paymentMethod: order.paymentMethod,
+                                      //   onPressed: () {
+                                      //     locator<TrackOrderBloc>().showPayment();
+                                      //   },
+                                      // ),
+                                      // const SizedBox(
+                                      //   height: 9,
+                                      // ),
+                                      const Divider(
+                                        height: 16,
                                       ),
-                                    );
-                                  },
-                                ),
-                                const Spacer(),
-                                AppTextButton(
-                                  iconData: Ionicons.shield,
-                                  isDense: true,
-                                  text: context.translate.rideSafety,
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      useSafeArea: false,
-                                      builder: (context) => RideSafetyDialog(
-                                        order: state.order,
+                                      InkWell(
+                                        onTap: (){
+                                          showDialog(
+                                            context: context,
+                                            useSafeArea: false,
+                                            builder: (context) {
+                                              return  CancelRideDialog(orderId: state.order.id,);
+                                            },
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Icon(Icons.close),
+                                                Text(context.translate.cancelTrip,style: context.bodyMedium!.copyWith(color: Colors.red),),
+
+                                              ],
+                                            ),
+                                            Text(context.translate.cancelRideMessage.substring(0,15),style: context.bodySmall!.copyWith(color: Colors.black54),)
+
+
+                                            // AppTextButton(
+                                            //   iconData: Ionicons.shield,
+                                            //   text: context.translate.rideSafety,
+                                            //   onPressed: () {
+                                            //     showDialog(
+                                            //       context: context,
+                                            //       useSafeArea: false,
+                                            //       builder: (context) => RideSafetyDialog(
+                                            //         order: order,
+                                            //       ),
+                                            //     );
+                                            //   },
+                                            // ),
+                                          ],
+                                        ),
                                       ),
-                                    );
-                                  },
+                                      SizedBox(height: 6,),
+                                    ],
+                                  ),
                                 ),
+
+                                // const Spacer(),
+                                // AppTextButton(
+                                //   iconData: Ionicons.shield,
+                                //   isDense: true,
+                                //   text: context.translate.rideSafety,
+                                //   onPressed: () {
+                                //     showDialog(
+                                //       context: context,
+                                //       useSafeArea: false,
+                                //       builder: (context) => RideSafetyDialog(
+                                //         order: state.order,
+                                //       ),
+                                //     );
+                                //   },
+                                // ),
                               ],
                             ),
                           ],
                         ),
                       ),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //       child: AppBorderedButton(
+                      //         title: context.translate.call,
+                      //         isPrimary: true,
+                      //         onPressed: () {
+                      //           launchUrlString("tel://${state.order.riderPhoneNumber}");
+                      //         },
+                      //       ),
+                      //     ),
+                      //     const SizedBox(width: 12),
+                      //     Expanded(
+                      //       child: AppPrimaryButton(
+                      //         onPressed: () {
+                      //         },
+                      //         child: Text(context.translate.message),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       AnimatedSwitcher(
                         duration: AnimationDuration.pageStateTransitionMobile,
                         child: Padding(
@@ -285,7 +356,8 @@ class ActiveOrderSheet extends StatelessWidget {
                                         )
                                       : const SizedBox.shrink(),
                         ),
-                      )
+                      ),
+
                     ],
                   ),
                 ),
