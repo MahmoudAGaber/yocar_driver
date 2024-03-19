@@ -19,7 +19,7 @@ class OnlineOfflineSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 125,
+      height: 118,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
           color: ColorPalette.neutralVariant99,
