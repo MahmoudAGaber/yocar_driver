@@ -23,29 +23,45 @@ class CancelRideDialog extends StatelessWidget {
         DialogType.bottomSheet,
         xl: DialogType.dialog,
       ),
-      primaryButton: AppBorderedButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-          showDialog(
-            context: context,
-            useSafeArea: false,
-            builder: (context) => CancelRideReasonDialog(
-              orderId: orderId,
+      contentPadding: EdgeInsets.zero,
+      // primaryButton: AppPrimaryButton(onPressed: () {
+
+      // }, child: Text(context.translate.findAnotherRide)),
+      secondaryButton: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pop();
+                showDialog(
+                  context: context,
+                  useSafeArea: false,
+                  builder: (context) => CancelRideReasonDialog(orderId: orderId,),
+                );
+              },
+              //textColor: ColorPalette.error40,
+              child: Text(context.translate.cancelMyRide,style: context.titleSmall!.copyWith(color: Colors.black54),),
             ),
-          );
-        },
-        textColor: ColorPalette.error40,
-        title: context.translate.cancelRide,
+          ],
+        ),
       ),
-      secondaryButton: AppTextButton(
+      primaryButton: AppBorderedButton(
         onPressed: () => Navigator.of(context).pop(),
-        text: context.translate.goBackToRide,
+        title: context.translate.waitMyRide,
+        isPrimary: true,
+        textColor: ColorPalette.primary20,
+        borderColor: Theme.of(context).primaryColor,
+        buttonColor: ColorPalette.primary99,
+        //color: Colors.black,
+        // backgroundColor: Colors.grey[300],
       ),
       iconColor: ColorPalette.error40,
       header: (
-        Ionicons.close_circle,
-        context.translate.rideCancellation,
-        context.translate.cancelRideMessage,
+      SizedBox(height: 90,width:145,child:Image.asset("assets/images/cancelRide.png",fit: BoxFit.cover,),),
+      context.translate.rideCancellation,
+      context.translate.cancelRideMessage,
       ),
       child: const SizedBox.shrink(),
     );

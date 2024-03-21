@@ -17,7 +17,7 @@ class LocationPermissionDeniedForeverDialog extends StatelessWidget {
         xl: DialogType.dialog,
       ),
       header: (
-        Ionicons.location,
+        Icon(Ionicons.location),
         context.translate.locationPermission,
         context.translate.locationPermissionDeniedForeverMessage,
       ),

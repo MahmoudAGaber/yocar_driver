@@ -39,7 +39,7 @@ class _SelectProfileImageDialogState extends State<SelectProfileImageDialog> {
         xl: DialogType.dialog,
       ),
       header: (
-        Ionicons.person_circle,
+        Icon(Ionicons.person_circle),
         context.translate.selectProfileImage,
         null,
       ),

@@ -19,7 +19,7 @@ class DeleteAccountDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppResponsiveDialog(
       header: (
-        Ionicons.trash_bin,
+        Icon(Ionicons.trash_bin),
         context.translate.deleteAccount,
         context.translate.deleteAccountNotice,
       ),

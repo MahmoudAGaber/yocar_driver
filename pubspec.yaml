@@ -67,6 +67,7 @@ dependencies:
   flutter_common:
     path: ../../libs/flutter_common
   lottie: ^2.7.0
+  animated_splash_screen: ^1.3.0
 
   # Network
   graphql: ^5.2.0-beta.7

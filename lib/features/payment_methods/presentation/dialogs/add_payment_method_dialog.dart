@@ -32,7 +32,7 @@ class _AddPaymentMethodDialogState extends State<AddPaymentMethodDialog> {
           xl: DialogType.dialog,
         ),
         header: (
-          Ionicons.card,
+          Icon(Ionicons.card),
           context.translate.addPaymentMethod,
           context.translate.addPaymentMethodDescription,
         ),

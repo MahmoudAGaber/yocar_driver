@@ -35,7 +35,7 @@ class _LaunchMapDialogState extends State<LaunchMapDialog> {
         xl: DialogType.dialog,
       ),
       header: (
-        Ionicons.navigate_circle,
+        Icon(Ionicons.navigate_circle),
         "Launch Map",
         "Use one of the installed maps to navigate to the destined location",
       ),

@@ -47,7 +47,7 @@ class _SelectPayoutMethodDialogState extends State<SelectPayoutMethodDialog> {
         ),
         onBackPressed: () => context.router.pop(),
         header: (
-          Ionicons.wallet,
+          Icon(Ionicons.wallet),
           context.translate.addPayoutMethod,
           "Select a payout method to link your account with:",
         ),

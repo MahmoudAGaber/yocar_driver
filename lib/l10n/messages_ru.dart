@@ -3,8 +3,8 @@ import 'package:intl/intl.dart' as intl;
 import 'messages.dart';
 
 /// The translations for English (`en`).
-class SEn extends S {
-  SEn([String locale = 'ru']) : super(locale);
+class SRu extends S {
+  SRu([String locale = 'ru']) : super(locale);
 
   @override
   String get call => 'вызов';

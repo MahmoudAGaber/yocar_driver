@@ -31,6 +31,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AnnouncementsScreen(),
       );
     },
+    SplachRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplachScreen(),
+      );
+    },
     AuthRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -210,6 +216,20 @@ class AnnouncementsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AnnouncementsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplachScreen]
+class SplachRoute extends PageRouteInfo<void> {
+  const SplachRoute({List<PageRouteInfo>? children})
+      : super(
+    SplachRoute.name,
+    initialChildren: children,
+  );
+
+  static const String name = 'SplachRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

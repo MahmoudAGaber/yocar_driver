@@ -8,7 +8,7 @@ class SettingsState with _$SettingsState {
   }) = _SettingsState;
 
   factory SettingsState.initial() => const SettingsState(
-        locale: 'en',
+        locale: 'ka',
       mapProvider: MapProviderEnum.googleMaps
       );
 

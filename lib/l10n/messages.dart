@@ -23,6 +23,8 @@ import 'messages_ms.dart';
 import 'messages_nl.dart';
 import 'messages_no.dart';
 import 'messages_zh.dart';
+import 'messages_ge.dart';
+import 'messages_ru.dart';
 
 /// Callers can lookup localized strings with an instance of S
 /// returned by `S.of(context)`.
@@ -124,15 +126,16 @@ abstract class S {
     Locale('no'),
     Locale('zh'),
     Locale('zh', 'CN'),
-    Locale('zh', 'TW')
+    Locale('zh', 'TW'),
+    Locale('ka'),
+    Locale('ru')
   ];
 
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
   /// **'Welcome to the app'**
-  ///
-  ///
+
   String get call;
 
   String get message;
@@ -431,6 +434,8 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirm;
+
+  //String get confirmLocation;
 
   /// No description provided for @confirmDropoff.
   ///
@@ -903,7 +908,7 @@ abstract class S {
   /// No description provided for @rideHistory.
   ///
   /// In en, this message translates to:
-  /// **'Ride History'**
+  /// **'RIDES'**
   String get rideHistory;
 
   /// No description provided for @scheduledRides.
@@ -1860,6 +1865,7 @@ abstract class S {
   /// **'Driver should be arrived in any moment now'**
   String get driverShouldHaveArrivedNotice;
 
+
   /// No description provided for @deleteAccount.
   ///
   /// In en, this message translates to:
@@ -2068,8 +2074,12 @@ class _SDelegate extends LocalizationsDelegate<S> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bn', 'de', 'en', 'es', 'et', 'fi', 'fr', 'hi', 'hy', 'id', 'it', 'ja', 'ko', 'ms', 'nl', 'no', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) {
+    final supportedLanguages = [ 'ka', 'ru','ar', 'bn', 'de', 'en', 'es', 'et', 'fi', 'fr', 'hi', 'hy', 'id', 'it', 'ja', 'ko', 'ms', 'nl', 'no', 'zh',];
 
+    // Check if either the language or the language with the country code is supported
+    return supportedLanguages.contains(locale.languageCode) || supportedLanguages.contains('${locale.languageCode}_${locale.countryCode}');
+  }
   @override
   bool shouldReload(_SDelegate old) => false;
 }
@@ -2079,12 +2089,12 @@ S lookupS(Locale locale) {
   // Lookup logic when language+country codes are specified.
   switch (locale.languageCode) {
     case 'zh': {
-  switch (locale.countryCode) {
-    case 'CN': return SZhCn();
-case 'TW': return SZhTw();
-   }
-  break;
-   }
+      switch (locale.countryCode) {
+        case 'CN': return SZhCn();
+        case 'TW': return SZhTw();
+      }
+      break;
+    }
   }
 
   // Lookup logic when only language code is specified.
@@ -2107,12 +2117,14 @@ case 'TW': return SZhTw();
     case 'nl': return SNl();
     case 'no': return SNo();
     case 'zh': return SZh();
+    case 'ka': return SGe();
+    case 'ru': return SRu();
   }
 
   throw FlutterError(
-    'S.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+      'S.delegate failed to load unsupported locale "$locale". This is likely '
+          'an issue with the localizations generation tool. Please file an issue '
+          'on GitHub with a reproducible sample app and the gen-l10n configuration '
+          'that was used.'
   );
 }

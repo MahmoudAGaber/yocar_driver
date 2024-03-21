@@ -20,7 +20,7 @@ class RideOptionsSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppResponsiveDialog(
       type: context.responsive(DialogType.bottomSheet, xl: DialogType.dialog),
-      header: (Ionicons.cog, context.translate.rideOptions, null),
+      header: (Icon(Ionicons.cog), context.translate.rideOptions, null),
       onBackPressed: () => Navigator.of(context).pop(),
       secondaryButton: AppBorderedButton(
           onPressed: () {

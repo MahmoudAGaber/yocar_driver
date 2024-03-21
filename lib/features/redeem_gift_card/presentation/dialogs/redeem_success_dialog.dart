@@ -23,7 +23,7 @@ class RedeemSuccessDialog extends StatelessWidget {
         xl: DialogType.dialog,
       ),
       header: (
-        Ionicons.gift,
+        Icon(Ionicons.gift),
         context.translate.redeemSuccessTitle,
         context.translate.redeemSuccessDescription(amount.formatCurrency(currency)),
       ),

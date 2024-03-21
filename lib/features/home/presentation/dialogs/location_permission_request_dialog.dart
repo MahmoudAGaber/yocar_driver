@@ -21,7 +21,7 @@ class LocationPermissionRequestDialog extends StatelessWidget {
         xl: DialogType.dialog,
       ),
       header: (
-        Ionicons.location,
+        Icon(Ionicons.location),
         context.translate.locationPermission,
         "Location permission is a requirement for receiving orders around you and also for rider to track your location. This can happen while your app is in background or foreground. You can change this permission in your phone settings.",
       ),

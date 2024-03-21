@@ -39,7 +39,7 @@ class _RedeemGiftCardDialogState extends State<RedeemGiftCardDialog> {
         ),
         onBackPressed: () => context.router.pop(),
         header: (
-          Ionicons.gift,
+          Icon(Ionicons.gift),
           context.translate.redeemGiftCard,
           context.translate.redeemGiftCardDescription,
         ),

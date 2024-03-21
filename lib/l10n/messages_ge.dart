@@ -2,9 +2,9 @@ import 'package:intl/intl.dart' as intl;
 
 import 'messages.dart';
 
-/// The translations for English (`en`).
-class SEn extends S {
-  SEn([String locale = 'en']) : super(locale);
+/// The translations for Georgia (`ka`).
+class SGe extends S {
+  SGe([String locale = 'ka']) : super(locale);
 
   @override
   String get call => 'ზარი';
@@ -177,7 +177,7 @@ class SEn extends S {
   String get onboardingLetStart => 'დავიწყოთ';
 
   @override
-  String get onboardingLetStartSubTitle => 'შეუერთდით YO CAR- ის საზოგადოებას დღეს და გამოსცადეთ შესაძლებლობა გადაადგილდეთ ნებისმიერ ადგილას, ნებისმიერ დროს. დარეგისტრირდით, რათა დაიწყოთ ჩვენთან ერთად მგზავრობა, ან თუ უკვე ხართ ჩვენი საზოგადოების წევრი, შედით სისტემაში და განაგრძეთ მოგზაურობა.
+  String get onboardingLetStartSubTitle => 'შეუერთდით YO CAR- ის საზოგადოებას დღეს და გამოსცადეთ შესაძლებლობა გადაადგილდეთ ნებისმიერ ადგილას, ნებისმიერ დროს. დარეგისტრირდით, რათა დაიწყოთ ჩვენთან ერთად მგზავრობა, ან თუ უკვე ხართ ჩვენი საზოგადოების წევრი, შედით სისტემაში და განაგრძეთ მოგზაურობა';
 
   @override
   String get selectLanguage => 'აირჩიეთ ენა';
@@ -509,7 +509,7 @@ class SEn extends S {
 
   @override
   String redeemSuccessDescription(String amount) {
-    return 'წარმატებით გაცვალე $ღირებულების სასაჩუქრე ბარათი.';
+    return 'წარმატებით გაცვალე ღირებულების სასაჩუქრე ბარათი.';
   }
 
   @override
@@ -762,7 +762,7 @@ class SEn extends S {
 
   @override
   String cashPaymentDescription(String amount) {
-    return 'ადასტურებთ რომ მიიღეთ $ოდენობა?';
+    return 'ადასტურებთ რომ მიიღეთ ოდენობა?';
   }
 
   @override

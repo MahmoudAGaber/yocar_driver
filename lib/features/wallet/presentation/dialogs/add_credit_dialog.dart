@@ -46,7 +46,7 @@ class _AddCreditDialogState extends State<AddCreditDialog> {
           xl: DialogType.dialog,
         ),
         onBackPressed: () => context.router.pop(),
-        header: (Ionicons.wallet, context.translate.addCreditToWallet, null),
+        header: (Icon(Ionicons.wallet), context.translate.addCreditToWallet, null),
         primaryButton: BlocConsumer<TopUpWalletBloc, TopUpWalletState>(
           listener: (context, state) {
             state.mapOrNull(

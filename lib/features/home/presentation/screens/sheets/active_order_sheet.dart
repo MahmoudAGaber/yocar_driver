@@ -97,26 +97,29 @@ class ActiveOrderSheet extends StatelessWidget {
                       const CardHandle(),
 
                       context.responsive(
-                        AnimatedSwitcher(
-                          duration: AnimationDuration.pageStateTransitionMobile,
-                          child: (state.order.status == OrderStatus.driverAccepted && state.order.etaPickupAt != null)
-                              ? NoticeBarContent(
-                            icon: Ionicons.time,
-                            text: "Picking up the rider in:",
-                            trailingText: state.order.etaPickupAt?.minutesFromNow(context),
-                          )
-                              : state.order.status == OrderStatus.arrived
-                              ? const NoticeBarContent(
-                            icon: Ionicons.information_circle,
-                            text: "Rider has been notified, Pickup the rider and start the ride",
-                          )
-                              : state.order.status == OrderStatus.started
-                              ? NoticeBarContent(
-                            icon: Ionicons.time,
-                            text: "Heading to destination",
-                            trailingText: state.order.expectedArrival(context),
-                          )
-                              : const SizedBox.shrink(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: AnimatedSwitcher(
+                            duration: AnimationDuration.pageStateTransitionMobile,
+                            child: (state.order.status == OrderStatus.driverAccepted && state.order.etaPickupAt != null)
+                                ? NoticeBarContent(
+                              icon: Ionicons.time,
+                              text: "Picking up the rider in:",
+                              trailingText: state.order.etaPickupAt?.minutesFromNow(context),
+                            )
+                                : state.order.status == OrderStatus.arrived
+                                ? const NoticeBarContent(
+                              icon: Ionicons.information_circle,
+                              text: "Rider has been notified, Pickup the rider and start the ride",
+                            )
+                                : state.order.status == OrderStatus.started
+                                ? NoticeBarContent(
+                              icon: Ionicons.time,
+                              text: "Heading to destination",
+                              trailingText: state.order.expectedArrival(context),
+                            )
+                                : const SizedBox.shrink(),
+                          ),
                         ),
                         xl: const SizedBox(),
                       ),
@@ -175,127 +178,144 @@ class ActiveOrderSheet extends StatelessWidget {
                       const Divider(
                         height: 16,
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        height: 150,
-                        child: WayPointsView(
-                          waypoints: state.order.waypoints,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Text(context.translate.tripDetails,style: context.titleSmall,),
+                          ),
+                          SizedBox(height: 8,),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            height: 126,
+                            child: WayPointsView(
+                              waypoints: state.order.waypoints,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(
-                        height: 16,
+                        height: 8,
                       ),
-                      Container(
-                        height: 16,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.02),
-                              blurRadius: 10,
-                              offset: const Offset(0, -5),
-                            )
-                          ],
-                          color: ColorPalette.neutralVariant99,
-                        ),
-                      ),
+                      // Container(
+                      //   height: 16,
+                      //   decoration: BoxDecoration(
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: Colors.black.withOpacity(0.02),
+                      //         blurRadius: 10,
+                      //         offset: const Offset(0, -5),
+                      //       )
+                      //     ],
+                      //     color: ColorPalette.neutralVariant99,
+                      //   ),
+                      // ),
+                      Divider(height: 6,),
+
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            PaymentMethodSelectField(
+                        padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+                        child: Text(context.translate.paymentMethods,style: context.titleSmall!.copyWith(fontSize: 15),),
+                      ),
+                      SizedBox(height: 4,),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: PaymentMethodSelectField(
                               order: state.order,
                               onPressed: null,
                             ),
-                            const SizedBox(
-                              height: 9,
-                            ),
-                            const Divider(
-                              height: 16,
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  child: Column(
-                                    children: [
-                                      // PaymentMethodSelectField(
-                                      //   paymentMethod: order.paymentMethod,
-                                      //   onPressed: () {
-                                      //     locator<TrackOrderBloc>().showPayment();
-                                      //   },
-                                      // ),
-                                      // const SizedBox(
-                                      //   height: 9,
-                                      // ),
-                                      const Divider(
-                                        height: 16,
+                          ),
+                          const SizedBox(
+                            height: 9,
+                          ),
+                          const Divider(
+                            height: 6,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child: Column(
+                                  children: [
+                                    // PaymentMethodSelectField(
+                                    //   paymentMethod: order.paymentMethod,
+                                    //   onPressed: () {
+                                    //     locator<TrackOrderBloc>().showPayment();
+                                    //   },
+                                    // ),
+                                    // const SizedBox(
+                                    //   height: 9,
+                                    // ),
+                                    const Divider(
+                                      height: 6,
+                                    ),
+                                    InkWell(
+                                      onTap: (){
+                                        showDialog(
+                                          context: context,
+                                          useSafeArea: false,
+                                          builder: (context) {
+                                            return  CancelRideDialog(orderId: state.order.id,);
+                                          },
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                             // Icon(Icons.close),
+                                              Text(context.translate.cancelTrip,style: context.bodyMedium!.copyWith(color: Theme.of(context).primaryColor),),
+
+                                            ],
+                                          ),
+                                          Text(context.translate.cancelRideMessage.substring(0,15),style: context.bodySmall!.copyWith(color: Colors.black54),)
+
+
+                                          // AppTextButton(
+                                          //   iconData: Ionicons.shield,
+                                          //   text: context.translate.rideSafety,
+                                          //   onPressed: () {
+                                          //     showDialog(
+                                          //       context: context,
+                                          //       useSafeArea: false,
+                                          //       builder: (context) => RideSafetyDialog(
+                                          //         order: order,
+                                          //       ),
+                                          //     );
+                                          //   },
+                                          // ),
+                                        ],
                                       ),
-                                      InkWell(
-                                        onTap: (){
-                                          showDialog(
-                                            context: context,
-                                            useSafeArea: false,
-                                            builder: (context) {
-                                              return  CancelRideDialog(orderId: state.order.id,);
-                                            },
-                                          );
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Icon(Icons.close),
-                                                Text(context.translate.cancelTrip,style: context.bodyMedium!.copyWith(color: Colors.red),),
-
-                                              ],
-                                            ),
-                                            Text(context.translate.cancelRideMessage.substring(0,15),style: context.bodySmall!.copyWith(color: Colors.black54),)
-
-
-                                            // AppTextButton(
-                                            //   iconData: Ionicons.shield,
-                                            //   text: context.translate.rideSafety,
-                                            //   onPressed: () {
-                                            //     showDialog(
-                                            //       context: context,
-                                            //       useSafeArea: false,
-                                            //       builder: (context) => RideSafetyDialog(
-                                            //         order: order,
-                                            //       ),
-                                            //     );
-                                            //   },
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(height: 6,),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: 6,),
+                                  ],
                                 ),
+                              ),
 
-                                // const Spacer(),
-                                // AppTextButton(
-                                //   iconData: Ionicons.shield,
-                                //   isDense: true,
-                                //   text: context.translate.rideSafety,
-                                //   onPressed: () {
-                                //     showDialog(
-                                //       context: context,
-                                //       useSafeArea: false,
-                                //       builder: (context) => RideSafetyDialog(
-                                //         order: state.order,
-                                //       ),
-                                //     );
-                                //   },
-                                // ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              // const Spacer(),
+                              // AppTextButton(
+                              //   iconData: Ionicons.shield,
+                              //   isDense: true,
+                              //   text: context.translate.rideSafety,
+                              //   onPressed: () {
+                              //     showDialog(
+                              //       context: context,
+                              //       useSafeArea: false,
+                              //       builder: (context) => RideSafetyDialog(
+                              //         order: state.order,
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
+                            ],
+                          ),
+                        ],
                       ),
                       // Row(
                       //   children: [

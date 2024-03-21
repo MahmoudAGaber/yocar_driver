@@ -84,7 +84,7 @@ class _CancelRideReasonDialogState extends State<CancelRideReasonDialog> {
             isPrimary: true,
           ),
           header: (
-            Ionicons.close_circle,
+            Icon(Ionicons.close_circle),
             context.translate.rideCancellation,
             null,
           ),

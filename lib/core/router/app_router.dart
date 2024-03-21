@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:driver_flutter/core/entities/order.dart';
 import 'package:driver_flutter/core/router/login_guard.dart';
+import 'package:driver_flutter/features/SplachScreen.dart';
 import 'package:driver_flutter/features/announcements/presentation/screens/announcements_screen.dart';
 import 'package:driver_flutter/features/auth/presentation/screens/auth_screen.dart';
 import 'package:driver_flutter/features/earnings/presentation/screens/earnings_screen.dart';
@@ -45,9 +46,14 @@ class AppRouter extends _$AppRouter {
           page: NavigationRoute.page,
           children: [
             AutoRoute(
+              page: SplachRoute.page,
+              path: 'splach',
+               initial: true,
+            ),
+            AutoRoute(
               page: HomeRoute.page,
               path: 'home',
-              initial: true,
+              //initial: true,
               guards: [
                 LoginGuard(),
               ],
@@ -55,6 +61,7 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               page: EarningsRoute.page,
               path: 'earnings',
+             // initial: true,
               guards: [
                 LoginGuard(),
               ],

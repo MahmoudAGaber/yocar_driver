@@ -13,7 +13,7 @@ class AddCardDetailsDialog extends StatelessWidget {
       type: context.responsive(DialogType.fullScreen, xl: DialogType.dialog),
       onBackPressed: () => Navigator.of(context).pop(),
       header: (
-        Ionicons.card,
+        Icon(Ionicons.card),
         context.translate.addPaymentMethod,
         context.translate.addPaymentMethodDescription,
       ),

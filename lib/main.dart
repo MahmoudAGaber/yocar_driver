@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: dotenv.maybeGet('APP_NAME') ?? 'Ridy Driver',
+            title: dotenv.maybeGet('APP_NAME') ?? 'YoCar',
             themeMode: ThemeMode.light,
             theme: AppTheme.light(
               Fonts.primary,
@@ -59,11 +59,9 @@ class MyApp extends StatelessWidget {
               common_messages.S.delegate,
             ],
             supportedLocales: S.supportedLocales,
-            routerConfig: locator<AppRouter>().config(
-              navigatorObservers: () => [
-                RouterObserver(),
-              ],
-            ),
+            routerDelegate: locator<AppRouter>().delegate(),
+            routeInformationParser: locator<AppRouter>().defaultRouteParser(),
+
           );
         },
       ),
