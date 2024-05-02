@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: dotenv.maybeGet('APP_NAME') ?? 'YoCar',
+            title: dotenv.maybeGet('APP_NAME') ?? 'YoDriver',
             themeMode: ThemeMode.light,
             theme: AppTheme.light(
               Fonts.primary,

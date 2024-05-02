@@ -30,7 +30,7 @@ class _SplachScreenState extends State<SplachScreen>  with SingleTickerProviderS
 
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOut,
+      curve: Curves.ease
     );
 
     _controller.repeat(reverse: true);
@@ -63,7 +63,7 @@ class _SplachScreenState extends State<SplachScreen>  with SingleTickerProviderS
             animation: _animation,
             builder: (context, child) {
               return Transform.rotate(
-                angle: _animation.value * 2 * 3.14159, // Rotate by 360 degrees
+                angle: 0.0, // Rotate by 360 degrees
                 child: Opacity(
                   opacity: _animation.value,
                   child: Image.asset(

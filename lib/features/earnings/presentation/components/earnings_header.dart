@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:driver_flutter/core/extensions/extensions.dart';
 import 'package:flutter_common/core/presentation/buttons/app_back_button.dart';
 import 'package:driver_flutter/gen/assets.gen.dart';
+import 'package:flutter_common/core/presentation/responsive_dialog/app_top_bar.dart';
 
 import 'action_buttons.dart';
 import 'filters_box.dart';
@@ -36,16 +37,9 @@ class EarningsHeader extends StatelessWidget {
             bottom: false,
             child: Column(
               children: [
-                context.responsive(
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: AppBackButton(
-                      onPressed: () => context.router.pop(),
-                    ),
-                  ),
-                  xl: const SizedBox(
-                    height: 36,
-                  ),
+                AppTopBar(
+                  title: "",
+                  // subtitle: context.translate.favoriteLocationsSubtitle,
                 ),
                 const FiltersBox(),
                 SizedBox(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:driver_flutter/config/locator/locator.dart';
 import 'package:driver_flutter/core/router/app_router.dart';
+import 'package:flutter_common/core/presentation/responsive_dialog/app_top_bar.dart';
 import 'package:flutter_common/core/theme/animation_duration.dart';
 import 'package:driver_flutter/core/extensions/extensions.dart';
 import 'package:flutter_common/core/presentation/buttons/app_back_button.dart';
@@ -38,25 +39,9 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  context.responsive(
-                    AppBackButton(onPressed: () {
-                      context.router.pop();
-                    }),
-                    xl: const SizedBox.shrink(),
-                  ),
-                  SizedBox(width: 4,),
-                  Text(context.translate.backButton,
-                    style: context.bodyLarge,
-                  ),
-                  SizedBox(height: context.responsive(16, xl: 84)),
-                  SizedBox(width: MediaQuery.of(context).size.width*.24,),
-                  Text(
-                    context.translate.rideHistory,
-                    style: context.titleMedium,
-                  ),
-                ],
+              AppTopBar(
+                title: context.translate.rideHistory,
+                // subtitle: context.translate.favoriteLocationsSubtitle,
               ),
               SizedBox(height: context.responsive(2, xl: 84)),
               // Text(
